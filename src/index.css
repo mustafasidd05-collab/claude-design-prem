@@ -1,0 +1,353 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Lumen Night Foundry — OKLCH Tokens */
+    --color-paper: oklch(13% 0.014 265);
+    --color-paper-2: oklch(16% 0.016 265);
+    --color-paper-3: oklch(19% 0.018 265);
+    --color-rule: oklch(28% 0.012 265);
+    --color-rule-2: oklch(34% 0.010 265);
+    --color-neutral: oklch(52% 0.008 265);
+    --color-muted: oklch(62% 0.006 262);
+    --color-ink-2: oklch(82% 0.006 262);
+    --color-ink: oklch(96% 0.006 262);
+
+    /* Accent — molten brass */
+    --color-accent: oklch(76% 0.17 50);
+    --color-accent-hover: oklch(82% 0.18 50);
+    --color-accent-2: oklch(68% 0.16 18);
+    --color-glow: oklch(80% 0.16 50 / 0.42);
+    --color-glow-2: oklch(80% 0.14 50 / 0.12);
+    --color-paper-emit: oklch(76% 0.17 50 / 0.04);
+    --color-focus: oklch(76% 0.17 50);
+
+    /* Blueprint grid */
+    --rule-blueprint: oklch(96% 0.006 262 / 0.04);
+
+    /* Card inner-radial */
+    --card-radial-rest: oklch(76% 0.17 50 / 0.04);
+    --card-radial-hover: oklch(76% 0.17 50 / 0.10);
+
+    /* Danger */
+    --color-danger: oklch(62% 0.22 25);
+
+    /* Typography — 3 families (2+1 rule) */
+    --font-display: "Instrument Serif", ui-serif, Georgia, serif;
+    --font-body: "Geist", ui-sans-serif, system-ui, sans-serif;
+    --font-label: "JetBrains Mono", ui-monospace, monospace;
+
+    /* Type scale (perfect fourth 1.333) */
+    --text-display: clamp(3rem, 5vw + 1rem, 5.5rem);
+    --text-display-s: clamp(1.8rem, 3vw + 0.6rem, 2.8rem);
+    --text-2xl: 2rem;
+    --text-xl: 1.5rem;
+    --text-lg: 1.125rem;
+    --text-md: 1rem;
+    --text-sm: 0.875rem;
+    --text-xs: 0.75rem;
+    --text-micro: 0.6875rem;
+
+    /* Tracking */
+    --tracking-tight: -0.032em;
+    --tracking-display: -0.02em;
+    --tracking-micro: 0.10em;
+
+    /* Spacing (4pt base) */
+    --space-3xs: 0.125rem;
+    --space-2xs: 0.25rem;
+    --space-xs: 0.5rem;
+    --space-sm: 0.75rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2.5rem;
+    --space-2xl: 4rem;
+    --space-3xl: 6rem;
+    --space-4xl: 9rem;
+
+    /* Easings */
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --ease-soft: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    /* Durations */
+    --dur-micro: 120ms;
+    --dur-short: 220ms;
+    --dur-long: 420ms;
+    --dur-pulse: 4s;
+
+    /* Radius */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --radius-pill: 9999px;
+
+    /* Z-index */
+    --z-base: 1;
+    --z-raised: 10;
+    --z-dropdown: 100;
+    --z-sticky: 200;
+    --z-modal: 400;
+    --z-toast: 500;
+
+    /* Layout */
+    --page-max: 1240px;
+    --page-gutter: clamp(1rem, 3vw, 2.5rem);
+
+    /* Semantic aliases for Tailwind */
+    --background: var(--color-paper);
+    --foreground: var(--color-ink-2);
+    --primary: var(--color-accent);
+    --primary-foreground: var(--color-paper);
+    --secondary: var(--color-paper-2);
+    --secondary-foreground: var(--color-ink-2);
+    --muted: var(--color-paper-2);
+    --muted-foreground: var(--color-muted);
+    --accent: var(--color-accent);
+    --accent-foreground: var(--color-paper);
+    --destructive: var(--color-danger);
+    --destructive-foreground: var(--color-paper);
+    --border: var(--color-rule);
+    --ring: var(--color-focus);
+    --radius: var(--radius-md);
+  }
+
+  .dark {
+    /* Already dark by default — Lumen Night Foundry */
+  }
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    overflow-x: clip;
+  }
+
+  body {
+    overflow-x: clip;
+    background: var(--color-paper);
+    color: var(--color-ink-2);
+    font-family: var(--font-body);
+    font-size: var(--text-md);
+    font-weight: 400;
+    line-height: 1.55;
+    font-variant-numeric: tabular-nums;
+    text-transform: lowercase;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Mono labels — the ONLY uppercase surface */
+  .eyebrow,
+  .callout span,
+  .meter__label,
+  .stat__label,
+  .kit-card__label,
+  .manifest-label,
+  .subgroup-label,
+  .card__eyebrow {
+    font-family: var(--font-label);
+    font-size: 11px;
+    letter-spacing: var(--tracking-micro);
+    text-transform: uppercase;
+    color: var(--color-ink);
+    opacity: 0.55;
+  }
+
+  /* Focus visible */
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: oklch(76% 0.17 50 / 0.25);
+    color: var(--color-ink);
+  }
+
+  a {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--color-accent-hover);
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Button variants */
+  .btn-accent {
+    @apply inline-flex items-center gap-2xs font-body text-sm font-medium text-paper bg-accent border border-accent px-4 py-1.5 rounded-pill lowercase cursor-pointer transition-all duration-micro ease-out;
+  }
+  .btn-accent:hover {
+    @apply bg-[var(--color-accent-hover)] -translate-y-0.5;
+  }
+  .btn-accent:active {
+    @apply translate-y-0;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2xs font-body text-sm font-medium text-ink-2 bg-secondary border border-[var(--color-rule)] px-4 py-1.5 rounded-pill lowercase cursor-pointer transition-all duration-micro ease-out;
+  }
+  .btn-ghost:hover {
+    @apply border-[var(--color-rule-2)] text-ink -translate-y-0.5;
+  }
+  .btn-ghost:active {
+    @apply translate-y-0;
+  }
+  .btn-ghost kbd {
+    @apply font-label text-[11px] px-1 py-0.5 border border-[var(--color-rule)] rounded-[4px] bg-paper;
+  }
+
+  .btn-icon {
+    @apply flex items-center justify-center w-9 h-9 bg-secondary border border-[var(--color-rule)] rounded-full text-muted cursor-pointer transition-colors duration-micro;
+  }
+  .btn-icon:hover {
+    @apply text-ink border-[var(--color-rule-2)];
+  }
+
+  .btn-link {
+    @apply bg-none border-none text-accent font-body text-sm font-medium cursor-pointer lowercase transition-colors duration-micro;
+  }
+  .btn-link:hover {
+    @apply text-[var(--color-accent-hover)];
+  }
+
+  .btn-view-toggle {
+    @apply flex items-center justify-center w-8.5 h-8.5 bg-secondary border border-[var(--color-rule)] rounded-sm text-muted cursor-pointer transition-all duration-micro;
+  }
+  .btn-view-toggle.active {
+    @apply text-accent border-accent;
+  }
+  .btn-view-toggle:hover {
+    @apply text-ink;
+  }
+
+  .cart-pill-badge {
+    @apply font-label text-[10px] uppercase bg-paper text-accent px-1.5 py-0.5 rounded-pill ml-0.5;
+  }
+
+  /* Card 3D */
+  .card-3d {
+    @apply transform-gpu transform-style-3d;
+    transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateZ(0);
+    transition: transform 140ms var(--ease-out), border-color var(--dur-micro) var(--ease-out), box-shadow 140ms var(--ease-out);
+    position: relative;
+    overflow: hidden;
+    will-change: transform;
+  }
+
+  .card-3d:hover {
+    box-shadow: 0 16px 40px oklch(0% 0 0 / 0.5), 0 0 24px oklch(76% 0.17 50 / 0.12);
+    border-color: var(--color-rule-2);
+  }
+
+  .card-3d:active {
+    transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateZ(-4px) scale(0.98) !important;
+  }
+
+  /* Specular Light Glare Sheen */
+  .card-glare {
+    @apply absolute inset-0 pointer-events-none opacity-0 transition-opacity duration-micro z-5;
+    background: radial-gradient(circle 200px at var(--glare-x, 50%) var(--glare-y, 50%), oklch(76% 0.17 50 / 0.15), transparent 75%);
+  }
+  .card-3d:hover .card-glare {
+    @apply opacity-100;
+  }
+
+  /* 3D Z-Layer Depth Elevation */
+  .card-3d .skill-apple-header,
+  .card-3d .kit-card__count,
+  .card-3d .skill-domain-pill {
+    transform: translateZ(16px);
+  }
+  .card-3d .skill-apple-title,
+  .card-3d .kit-card__label,
+  .card-3d .skill-apple-desc {
+    transform: translateZ(10px);
+  }
+  .card-3d .skill-apple-footer,
+  .card-3d .kit-card__action,
+  .card-3d .skill-apple-actions {
+    transform: translateZ(20px);
+  }
+
+  /* 3D Flip Checkmark Feedback */
+  .is-copied-3d {
+    animation: icon-flip-3d 340ms var(--ease-out);
+    color: var(--color-accent) !important;
+    border-color: var(--color-accent) !important;
+  }
+
+  /* Input styles */
+  .search-input {
+    @apply flex-1 border-none bg-transparent font-body text-sm text-ink py-2 px-1 outline-none lowercase;
+  }
+  .search-input::placeholder {
+    @apply text-neutral lowercase;
+  }
+
+  .select-control {
+    @apply bg-secondary border border-[var(--color-rule)] rounded-md px-3 py-1.5 font-body text-xs text-ink-2 outline-none cursor-pointer lowercase transition-colors duration-micro;
+  }
+  .select-control:focus {
+    @apply border-accent;
+  }
+
+  /* Domain pills */
+  .apple-domain-pill {
+    @apply bg-secondary border border-[var(--color-rule)] rounded-pill px-3.5 py-1.5 font-body text-xs font-medium text-ink-2 cursor-pointer whitespace-nowrap inline-flex items-center gap-1.5 lowercase transition-all duration-micro ease-out;
+  }
+  .apple-domain-pill:hover {
+    @apply border-[var(--color-rule-2)] text-ink;
+  }
+  .apple-domain-pill.active {
+    @apply bg-accent text-paper border-accent;
+  }
+  .apple-pill-count {
+    @apply text-[10px] opacity-75;
+  }
+}
+
+@layer utilities {
+  .transform-gpu {
+    transform: translateZ(0);
+  }
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .perspective-1200 {
+    perspective: 1200px;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+}
